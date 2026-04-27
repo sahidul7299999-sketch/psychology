@@ -1,0 +1,23 @@
+IMPORTANT: Creator Profile Photo Setup
+========================================
+
+The application is now configured to use 'k.jpg' as the creator profile photo.
+
+ACTION REQUIRED:
+---------------
+Please save the image you provided (the photo of the person in the red and black checkered shirt)
+as 'k.jpg' in the root directory of this project:
+
+Location: /tmp/cc-agent/57861729/project/k.jpg
+
+The image is already referenced in index.html at line 557:
+    <img src="k.jpg" alt="Creator Profile" class="profile-image">
+
+Once you place the image file, it will automatically appear on Page 2 (Contact page)
+in the profile section.
+
+Image specifications:
+- Filename: k.jpg
+- Format: JPEG
+- Recommended size: At least 200x200 pixels
+- The image will be displayed in a circular frame (80x80px on screen)

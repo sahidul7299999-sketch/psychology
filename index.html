@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsyStudy - Jagannath University</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow-x: hidden;
+            width: 100vw;
+        }
+
+        /* Page switching utility classes */
+        .page {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* --- Styles for Page 1 --- */
+        #page1 {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        #page1 .container {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1147 25%, #2d1b69 50%, #1a1147 75%, #0a0e27 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 20px;
+        }
+
+        #page1 .stars {
+            position: absolute;
+            width: 100%;
+            height: 60%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        #page1 .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        #page1 .brain-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+        }
+
+        #page1 .glow-outer {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+            animation: pulse-p1 3s ease-in-out infinite;
+        }
+
+        #page1 .glow-inner {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.5) 0%, transparent 70%);
+            animation: pulse-p1 3s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes pulse-p1 {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        #page1 .brain-wrapper {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            animation: rotate-p1 20s linear infinite, float-p1 4s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes rotate-p1 {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        @keyframes float-p1 {
+            0%, 100% { transform: translateY(0) scale(0.8); }
+            50% { transform: translateY(-20px) scale(1); }
+        }
+
+        #page1 .brain {
+            width: 140px;
+            height: 100px;
+            position: relative;
+            filter: drop-shadow(0 10px 30px rgba(139, 92, 246, 0.6));
+        }
+
+        #page1 .brain-left, #page1 .brain-right {
+            position: absolute;
+            width: 70px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        #page1 .brain-left {
+            left: 0;
+            background: linear-gradient(135deg, #e9d5ff 0%, #ddd6fe 100%);
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 40px;
+            border-top-right-radius: 20px;
+        }
+
+        #page1 .brain-right {
+            right: 0;
+            background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 40px;
+            border-top-left-radius: 20px;
+        }
+
+        #page1 .brain-center {
+            position: absolute;
+            left: 50%;
+            margin-left: -5px;
+            top: 20px;
+            width: 10px;
+            height: 60px;
+            background: #ddd6fe;
+        }
+
+        #page1 .brain-fold {
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            background: rgba(196, 181, 253, 0.6);
+            border-radius: 10px;
+        }
+
+        #page1 .fold-1 { top: 10px; left: 5px; }
+        #page1 .fold-2 { top: 30px; left: 10px; }
+        #page1 .fold-3 { top: 50px; left: 5px; }
+        #page1 .fold-4 { top: 70px; left: 15px; }
+
+        #page1 .floating-element {
+            position: absolute;
+            animation: floatElement-p1 3s ease-in-out infinite;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes floatElement-p1 {
+            0% { opacity: 0; transform: translateY(0); }
+            10% { opacity: 1; }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0); }
+        }
+
+        #page1 .floating-book { left: 10%; top: 25%; animation-delay: 0s; }
+        #page1 .book { width: 40px; height: 30px; position: relative; transform-style: preserve-3d; transform: rotateY(-15deg) rotateX(10deg); }
+        #page1 .book-cover { width: 40px; height: 30px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border-radius: 4px; border: 2px solid #a78bfa; position: relative; }
+        #page1 .book-pages { position: absolute; right: 2px; top: 2px; width: 35px; height: 26px; background: #e9d5ff; border-radius: 2px; }
+        #page1 .floating-scale { right: 10%; top: 28%; animation-delay: 0.2s; }
+        #page1 .scale { width: 60px; height: 40px; position: relative; transform: rotateY(15deg) rotateX(-10deg); }
+        #page1 .scale-base { position: absolute; top: 0; left: 25px; width: 10px; height: 20px; background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%); }
+        #page1 .scale-pan { position: absolute; top: 20px; width: 25px; height: 15px; background: #fcd34d; border-radius: 8px; border: 2px solid #fbbf24; }
+        #page1 .scale-pan-left { left: 0; }
+        #page1 .scale-pan-right { right: 0; }
+        #page1 .floating-chart { left: 15%; top: 45%; animation-delay: 0.4s; }
+        #page1 .chart { width: 35px; height: 35px; background: rgba(139, 92, 246, 0.3); border-radius: 4px; padding: 6px; display: flex; align-items: flex-end; gap: 3px; transform: rotateY(-10deg); }
+        #page1 .chart-bar { width: 6px; background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%); border-radius: 2px; }
+        #page1 .bar-1 { height: 15px; }
+        #page1 .bar-2 { height: 25px; }
+        #page1 .bar-3 { height: 20px; }
+        #page1 .floating-plant { right: 15%; top: 48%; animation-delay: 0.6s; }
+        #page1 .plant { width: 30px; height: 35px; position: relative; transform: rotateY(10deg); }
+        #page1 .plant-pot { position: absolute; bottom: 0; left: 8px; width: 14px; height: 12px; background: linear-gradient(180deg, #f87171 0%, #ef4444 100%); border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+        #page1 .plant-leaf { position: absolute; width: 8px; height: 15px; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); border-radius: 8px; }
+        #page1 .leaf-1 { top: 5px; left: 5px; }
+        #page1 .leaf-2 { top: 5px; left: 13px; }
+
+        #page1 .text-container {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInUp-p1 1s ease-out;
+        }
+
+        @keyframes fadeInUp-p1 {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #page1 .title {
+            font-size: 56px;
+            font-weight: 300;
+            color: white;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+        }
+
+        #page1 .subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: #c4b5fd;
+            letter-spacing: 3px;
+        }
+
+        #page1 .button-container {
+            margin-bottom: 30px;
+            animation: fadeInUp-p1 1s ease-out 0.3s backwards;
+        }
+
+        #page1 .button {
+            padding: 18px 80px;
+            background: linear-gradient(90deg, #6b46c1 0%, #553c9a 50%, #6b46c1 100%);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.6);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #page1 .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        #page1 .button:hover::before { left: 100%; }
+        #page1 .button:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(139, 92, 246, 0.8); }
+        #page1 .button:active { transform: scale(0.95); }
+        #page1 .pagination { display: flex; gap: 8px; animation: fadeInUp-p1 1s ease-out 0.5s backwards; }
+        #page1 .dot { width: 8px; height: 8px; border-radius: 4px; background: rgba(196, 181, 253, 0.3); transition: all 0.3s ease; }
+        #page1 .dot.active { width: 24px; background: #c4b5fd; }
+
+        @media (max-width: 768px) {
+            #page1 .title { font-size: 42px; }
+            #page1 .subtitle { font-size: 14px; }
+            #page1 .button { padding: 16px 60px; font-size: 16px; }
+            #page1 .glow-outer { width: 250px; height: 250px; }
+            #page1 .glow-inner { width: 180px; height: 180px; }
+        }
+
+        /* --- Styles for Page 2 --- */
+        #page2.active {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #0A1F44 0%, #1A2F5A 30%, #2A3F6A 60%, #4A2F7A 100%);
+            padding: 40px 24px;
+            overflow-y: auto;
+        }
+
+        @keyframes pulse-p2 {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        #page2 .header { margin-top: 20px; }
+        #page2 .profile-section { display: flex; flex-direction: row; align-items: center; gap: 16px; }
+        #page2 .profile-image-container { width: 80px; height: 80px; border-radius: 40px; border: 3px solid #FF9B7F; padding: 3px; animation: pulse-p2 3s ease-in-out infinite; }
+        #page2 .profile-image { width: 100%; height: 100%; border-radius: 37px; object-fit: cover; }
+        #page2 .creator-info { flex: 1; }
+        #page2 .creator-label { font-size: 14px; color: #FFFFFF; font-weight: 400; margin-bottom: 4px; }
+        #page2 .creator-name { font-size: 20px; color: #FFFFFF; font-weight: 700; letter-spacing: 0.5px; }
+        
+        /* New Styles for Bio Section */
+        #page2 .bio-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 24px;
+            margin-bottom: 40px;
+            font-style: italic;
+            color: #B8C5D6;
+            line-height: 1.6;
+        }
+        #page2 .bio-section .signature {
+            margin-top: 12px;
+            text-align: right;
+            font-weight: 600;
+            font-style: normal;
+            color: #FFFFFF;
+        }
+        
+        #page2 .contact-section { flex: 1; }
+        #page2 .contact-title { font-size: 48px; font-weight: 700; color: #FFFFFF; margin-bottom: 8px; text-align: center; }
+        #page2 .contact-subtitle { font-size: 16px; color: #B8C5D6; margin-bottom: 40px; text-align: center; }
+        #page2 .contact-list { display: flex; flex-direction: column; gap: 24px; }
+        #page2 .contact-item { display: flex; flex-direction: column; gap: 12px; }
+        #page2 .contact-label { font-size: 12px; color: #FFFFFF; font-weight: 600; letter-spacing: 1px; }
+        #page2 .contact-button { display: flex; flex-direction: row; align-items: center; background: rgba(139, 157, 195, 0.2); padding: 16px 20px; border-radius: 16px; gap: 12px; border: 1px solid rgba(139, 157, 195, 0.3); cursor: pointer; transition: background 0.2s, transform 0.2s; text-decoration: none; position: relative; overflow: hidden; }
+        #page2 .contact-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent); transition: left 0.5s; }
+        #page2 .contact-button:hover::before { left: 100%; }
+        #page2 .contact-button:hover { background: rgba(139, 157, 195, 0.3); transform: translateX(4px); }
+        #page2 .contact-button .icon { transition: transform 0.3s; }
+        #page2 .contact-button:hover .icon { transform: scale(1.2) rotate(5deg); }
+        #page2 .facebook-icon { color: #1877F2; filter: drop-shadow(0 0 8px rgba(24, 119, 242, 0.5)); }
+        #page2 .email-icon { color: #EA4335; filter: drop-shadow(0 0 8px rgba(234, 67, 53, 0.5)); }
+        #page2 .whatsapp-icon { color: #25D366; filter: drop-shadow(0 0 8px rgba(37, 211, 102, 0.5)); }
+        #page2 .contact-text { flex: 1; font-size: 14px; color: #B8C5D6; font-weight: 400; word-break: break-all; }
+        #page2 .icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        
+        #page2 .nav-button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 40px;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #page2 .nav-button {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+        }
+        
+        #page2 .back-button {
+            background: #6c757d; /* Gray color */
+            border: 2px solid #6c757d;
+        }
+
+        #page2 .back-button:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        #page2 .next-button {
+            background: #4A5FFF;
+            border: 2px solid #4A5FFF;
+        }
+
+        #page2 .next-button:hover {
+            background: #3A4FEF;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) { #page2 .contact-title { font-size: 36px; } }
+        @media (max-width: 480px) { #page2 .contact-title { font-size: 32px; } }
+
+        /* --- Styles for Page 3 --- */
+        #page3 {
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: #fff;
+        }
+
+        #page3 .container { max-width: 480px; margin: 0 auto; padding: 20px; position: relative; }
+        #page3 .gradient-bg { position: fixed; top: 0; left: 0; right: 0; height: 400px; background: linear-gradient(180deg, #7C3AED 0%, #5B21B6 100%); opacity: 0.8; z-index: -1; pointer-events: none; }
+        #page3 .content { position: relative; z-index: 1; }
+
+        #page3 .master-back-button {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+            width: fit-content;
+        }
+        #page3 .master-back-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(-4px);
+        }
+
+        #page3 .header { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; padding-top: 20px; }
+        #page3 .header-icon { font-size: 32px; }
+        #page3 .header-title { font-size: 28px; font-weight: 700; letter-spacing: 0.5px; }
+        #page3 .subtitle { font-size: 16px; font-weight: 600; margin-bottom: 20px; opacity: 0.9; }
+        #page3 .semester-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 16px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; backdrop-filter: blur(10px); }
+        #page3 .semester-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(124, 58, 237, 0.1); z-index: 0; }
+        #page3 .semester-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3); border-color: rgba(255, 255, 255, 0.3); }
+        #page3 .semester-card:active { transform: scale(0.98); }
+        #page3 .icon-container { width: 56px; height: 56px; border-radius: 16px; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 28px; position: relative; z-index: 1; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        #page3 .card-text { flex: 1; position: relative; z-index: 1; }
+        #page3 .card-title { font-size: 17px; font-weight: 600; letter-spacing: 0.3px; }
+        #page3 .arrow-container { width: 32px; height: 32px; border-radius: 10px; background: rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 600; position: relative; z-index: 1; }
+        #page3 .detail-view { display: none; }
+        #page3 .detail-view.active { display: block; }
+        #page3 .back-button { width: 44px; height: 44px; border-radius: 12px; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; margin-bottom: 20px; }
+        #page3 .back-button:hover { background: rgba(255, 255, 255, 0.25); transform: translateX(-4px); }
+        #page3 .detail-header { font-size: 22px; font-weight: 700; letter-spacing: 0.3px; margin-bottom: 24px; }
+        #page3 .course-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: all 0.3s; }
+        #page3 .course-card:hover { border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); }
+        #page3 .course-header { display: flex; align-items: center; padding: 16px; gap: 12px; cursor: pointer; }
+        #page3 .course-icon-container { width: 48px; height: 48px; border-radius: 12px; background: rgba(255, 255, 255, 0.15); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        #page3 .course-text { flex: 1; }
+        #page3 .course-code { font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.8); letter-spacing: 0.5px; margin-bottom: 4px; }
+        #page3 .course-title { font-size: 16px; font-weight: 600; letter-spacing: 0.2px; }
+        #page3 .expand-button { width: 32px; height: 32px; border-radius: 8px; background: rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+        #page3 .expand-button.expanded { transform: rotate(180deg); }
+        #page3 .course-details { padding: 0 16px 16px 16px; display: none; }
+        #page3 .course-details.show { display: block; animation: slideDown-p3 0.3s ease-out; }
+        @keyframes slideDown-p3 { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        #page3 .teacher-label { font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.7); margin-bottom: 6px; }
+        #page3 .teacher-text { font-size: 14px; color: rgba(255, 255, 255, 0.9); line-height: 1.5; }
+        #page3 .section-card { display: flex; align-items: center; padding: 16px; border-radius: 16px; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 12px; cursor: pointer; transition: all 0.3s; }
+        #page3 .section-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); }
+        #page3 .section-card.red { background: rgba(239, 68, 68, 0.15); }
+        #page3 .section-card.blue { background: rgba(59, 130, 246, 0.15); }
+        #page3 .section-card.yellow { background: rgba(234, 179, 8, 0.15); }
+        #page3 .section-card.green { background: rgba(34, 197, 94, 0.15); }
+        #page3 .section-card.purple { background: rgba(168, 85, 247, 0.15); }
+        #page3 .section-icon-container { width: 44px; height: 44px; border-radius: 12px; background: rgba(255, 255, 255, 0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+        #page3 .section-title { flex: 1; font-size: 16px; font-weight: 600; letter-spacing: 0.2px; }
+        #page3 .section-arrow { width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; }
+        #page3 .unit-list { margin-top: 12px; display: none; }
+        #page3 .unit-list.show { display: block; animation: slideDown-p3 0.3s ease-out; }
+        #page3 .unit-item { display: flex; align-items: center; padding: 12px 16px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); margin-bottom: 8px; cursor: pointer; transition: all 0.2s; }
+        #page3 .unit-item:hover { background: rgba(255, 255, 255, 0.1); }
+        #page3 .unit-icon { margin-right: 12px; font-size: 18px; }
+        #page3 .unit-title { flex: 1; font-size: 14px; }
+        #page3 .external-link { color: #7C3AED; font-size: 18px; }
+        #page3 .resource-section { margin-top: 24px; }
+        #page3 .resource-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; letter-spacing: 0.3px; }
+
+        @media (max-width: 480px) {
+            #page3 .container { padding: 16px; }
+            #page3 .header-title { font-size: 24px; }
+            #page3 .semester-card { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: Welcome Screen -->
+    <div id="page1" class="page active">
+        <div class="container">
+            <div class="stars" id="stars"></div>
+    
+            <div class="brain-container">
+                <div class="glow-outer"></div>
+                <div class="glow-inner"></div>
+    
+                <div class="brain-wrapper">
+                    <div class="brain">
+                        <div class="brain-left">
+                            <div class="brain-fold fold-1"></div>
+                            <div class="brain-fold fold-2"></div>
+                            <div class="brain-fold fold-3"></div>
+                            <div class="brain-fold fold-4"></div>
+                        </div>
+                        <div class="brain-right">
+                            <div class="brain-fold fold-1"></div>
+                            <div class="brain-fold fold-2"></div>
+                            <div class="brain-fold fold-3"></div>
+                            <div class="brain-fold fold-4"></div>
+                        </div>
+                        <div class="brain-center"></div>
+                    </div>
+                </div>
+    
+                <div class="floating-element floating-book">
+                    <div class="book">
+                        <div class="book-cover">
+                            <div class="book-pages"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="floating-element floating-scale">
+                    <div class="scale">
+                        <div class="scale-base"></div>
+                        <div class="scale-pan scale-pan-left"></div>
+                        <div class="scale-pan scale-pan-right"></div>
+                    </div>
+                </div>
+    
+                <div class="floating-element floating-chart">
+                    <div class="chart">
+                        <div class="chart-bar bar-1"></div>
+                        <div class="chart-bar bar-2"></div>
+                        <div class="chart-bar bar-3"></div>
+                    </div>
+                </div>
+    
+                <div class="floating-element floating-plant">
+                    <div class="plant">
+                        <div class="plant-pot"></div>
+                        <div class="plant-leaf leaf-1"></div>
+                        <div class="plant-leaf leaf-2"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="text-container">
+                <h1 class="title">PsyStudy</h1>
+                <p class="subtitle">Jagannath University</p>
+            </div>
+    
+            <div class="button-container">
+                <button class="button" onclick="showPage(2)">NEXT</button>
+            </div>
+    
+            <div class="pagination">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Contact Screen -->
+    <div id="page2" class="page">
+        <div class="header">
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <img src="k.jpg" 
+                         alt="Creator Profile" 
+                         class="profile-image">
+                </div>
+                <div class="creator-info">
+                    <p class="creator-label">Creator</p>
+                    <h2 class="creator-name">ASAD HASAN</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bio Section -->
+        <div class="bio-section">
+            <p>"PsyStudy transforms the complexity of psychology into an accessible journey of discovery. Through organized resources and comprehensive materials, we're making psychological education simpler, more engaging, and truly transformative for every aspiring mind."</p>
+            <p class="signature">- Asad Hasan</p>
+        </div>
+
+        <div class="contact-section">
+            <h1 class="contact-title">Contact</h1>
+            
+            <div class="contact-list">
+                <div class="contact-item">
+                    <p class="contact-label">FACEBOOK</p>
+                    <a href="https://www.facebook.com/asaaaadkabir" target="_blank" class="contact-button">
+                        <svg class="icon facebook-icon" viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                        <span class="contact-text">facebook.com/asadaadkabir</span>
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <p class="contact-label">EMAIL</p>
+                    <a href="mailto:asadkabir676@gmail.com" class="contact-button">
+                        <svg class="icon email-icon" viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span class="contact-text">asadkabir676@gmail.com</span>
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <p class="contact-label">WHATSAPP</p>
+                    <a href="https://wa.me/8801560066667" target="_blank" class="contact-button">
+                        <svg class="icon whatsapp-icon" viewBox="0 0 24 24">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                        </svg>
+                        <span class="contact-text">+880 1560066667</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-button-container">
+            <button class="nav-button back-button" onclick="showPage(1)">Back</button>
+            <button class="nav-button next-button" onclick="showPage(3)">Next</button>
+        </div>
+    </div>
+
+    <!-- Page 3: Course Management -->
+    <div id="page3" class="page">
+        <div class="gradient-bg"></div>
+        <div class="container">
+            <div class="master-back-button" onclick="showPage(2)">← Back to Contact</div>
+            <div class="content">
+                <!-- Home View -->
+                <div id="homeView">
+                    <div class="header">
+                        <div class="header-icon">🧠</div>
+                        <div class="header-title">PsyStudy</div>
+                    </div>
+
+                    <div class="subtitle">Select Your Semester</div>
+
+                    <div class="semester-card" onclick="showSemester(1)"> <div class="icon-container">🧠</div> <div class="card-text"> <div class="card-title">Psychology 1st Semester</div> </div> <div class="arrow-container">›</div> </div>
+                    <div class="semester-card" onclick="showSemester(2)"> <div class="icon-container">🧑‍🎓</div> <div class="card-text"> <div class="card-title">Psychology 2nd Semester</div> </div> <div class="arrow-container">›</div> </div>
+                    <div class="semester-card" onclick="showSemester(3)"> <div class="icon-container">🧩</div> <div class="card-text"> <div class="card-title">Psychology 3rd Semester</div> </div> <div class="arrow-container">›</div> </div>
+                    <div class="semester-card" onclick="showSemester(4)"> <div class="icon-container">📈</div> <div class="card-text"> <div class="card-title">Psychology 4th Semester</div> </div> <div class="arrow-container">›</div> </div>
+                    <div class="semester-card" onclick="showSemester(5)"> <div class="icon-container">🧘</div> <div class="card-text"> <div class="card-title">Psychology 5th Semester</div> </div> <div class="arrow-container">›</div> </div>
+                    <div class="semester-card" onclick="showSemester(6)"> <div class="icon-container">🎓</div> <div class="card-text"> <div class="card-title">Psychology 6th Semester</div> </div> <div class="arrow-container">›</div> </div>
+                    <div class="semester-card" onclick="showSemester(7)"> <div class="icon-container">🎯</div> <div class="card-text"> <div class="card-title">Psychology 7th Semester</div> </div> <div class="arrow-container">›</div> </div>
+                    <div class="semester-card" onclick="showSemester(8)"> <div class="icon-container">🏆</div> <div class="card-text"> <div class="card-title">Psychology 8th Semester</div> </div> <div class="arrow-container">›</div> </div>
+                </div>
+
+                <!-- Detail View for Semester 1 -->
+                <div id="semester1" class="detail-view">
+                    <div class="back-button" onclick="showHome()">←</div>
+                    <div class="detail-header">Psychology 1st Semester</div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🧠</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1101</div>
+                                <div class="course-title">Introduction to Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Farjana Ahmed and Dr. Kishor Roy</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1vnbJ3ZEx6wcRLEzW2UKnZSBI-q03o_yT')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Nature of Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1HWjrzLXvA9kHPsjDNajeB3u3sA6KcczH')"> <div class="unit-icon">👁️</div> <div class="unit-title">Unit 2 (Sensory Processes and Perception)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1HFGuKuqVMyb8kd29k0AykEa0pRAjjFeF')"> <div class="unit-icon">📖</div> <div class="unit-title">Unit 3 (Learning)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1HPJ6scpYlgfbeJKZi8azavkt6mOkAUiz')"> <div class="unit-icon">😊</div> <div class="unit-title">Unit 4 (Emotion)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1HGK2yJbmGdBI7cy3d7w-tDKZUij-0AAg')"> <div class="unit-icon">🎯</div> <div class="unit-title">Unit 5 (Motivation)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1HXPzOkTww-eoRUn9Ea-Sl7rZ2uqIyB5r')"> <div class="unit-icon">🧠</div> <div class="unit-title">Unit 6 (Memory and Forgetting)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🔬</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1102</div>
+                                <div class="course-title">Experimental Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Muhammad Akram Uzzaman and Dr. Fatema-Tu-Zohra Binte Zaman</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/16V2_QoiZW-Uh_O5gPSNJmX6iKDGdeRlN/view?usp=drivesdk')"> <div class="unit-icon">🔍</div> <div class="unit-title">Unit 1 (The Scientific Method in Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/16MWXHiKoqdUDkDxFh3MXGniX2_UWVona/view?usp=drivesdk')"> <div class="unit-icon">📋</div> <div class="unit-title">Unit 2 (Designing and Conducting Experiment)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/16VGpSGJ0nFAZaS1Ojtj7XifWl4lF_it_/view?usp=drivesdk')"> <div class="unit-icon">❓</div> <div class="unit-title">Unit 3 (Research Problem)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1DZ60HzBL_SQho8gUsRT6QP33wRnwNBlr/view?usp=drivesdk')"> <div class="unit-icon">💡</div> <div class="unit-title">Unit 4 (Development of the Hypothesis)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/16HRAKknMe52FUjCuBY6eV1Rmv5kwFU4_/view?usp=drivesdk')"> <div class="unit-icon">⚖️</div> <div class="unit-title">Unit 5 (Experimental Variables and Control)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/16UeBs37Bjz71zMZydfbQ7alz7LD62UuJ/view?usp=drivesdk')"> <div class="unit-icon">📐</div> <div class="unit-title">Unit 6 (Experimental Design)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1vsCT27SiwXOKryYL0V9GigzbGrSYQ9xs')"> <div class="unit-icon">📊</div> <div class="unit-title">Unit 7 (Psycho-physical Methods)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/16XH6dZ6g5uEon1oSoefDac8IzxfzPA44/view?usp=drivesdk')"> <div class="unit-icon">✍️</div> <div class="unit-title">Unit 8 (Report Writing)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📊</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1103</div>
+                                <div class="course-title">Fundamentals of Psychological Statistics</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Md. Nur Nobi Nirobe and Kazi Nur Hossain</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/197Xb3YvZ_LfzcqMn1qolgG0Lkry8Rl-t/view?usp=drivesdk')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1vsxYlGlmVUdMskOEQMm6LFUnmWo4hHkt')"> <div class="unit-icon">🔣</div> <div class="unit-title">Unit 2 (Symbolic representation of data)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1w2SYTiT--MA-ifgvkwN8CXL85nrYKG0_')"> <div class="unit-icon">📈</div> <div class="unit-title">Unit 3 (Frequency Distribution)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1L_CXoHX6dfuYBbxkxeisKQ3oUJdm7u-m/view?usp=drivesdk')"> <div class="unit-icon">📊</div> <div class="unit-title">Unit 4 (Measures of Central tendency)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1LbOt7sP7VzERLJMl6HQU_LpYwsvxBka9/view?usp=drivesdk')"> <div class="unit-icon">📉</div> <div class="unit-title">Unit 5 (Measures of Variability/Dispersion)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1vsOdPD9NLGzVhozq4digNs6i9pX7lgvo')"> <div class="unit-icon">📐</div> <div class="unit-title">Unit 6 (Skewness and Kurtosis)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">❤️</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1104</div>
+                                <div class="course-title">Introduction to Human Physiology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Hamida Akter and Shamima Akhtar</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1wKmxsA4QACEyzuqFN_vdOmcOA8lUcPot')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1wJWxlzIAEF1UZazfcC24sxS5WaSvy81z')"> <div class="unit-icon">🧠</div> <div class="unit-title">Unit 2 (Brain and Nervous System)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1JPRAFihHBJ7CCGcAz2W1scdv4kBqEsoZ/view?usp=drivesdk')"> <div class="unit-icon">🌬️</div> <div class="unit-title">Unit 3 (Respiratory System)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1w8YGTzqLyZQ8WJHyXII9QB66digpzQcZ')"> <div class="unit-icon">❤️</div> <div class="unit-title">Unit 4 (Circulatory System)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1cMGLKE6J7a2_fzlWKUPvGG5SjSnVeisD/view?usp=drivesdk')"> <div class="unit-icon">🍽️</div> <div class="unit-title">Unit 5 (Digestive System and Digestion)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/12VZUUckz4LxO19vshR66FRBr1UHyH-19/view?usp=drivesdk')"> <div class="unit-icon">⚖️</div> <div class="unit-title">Unit 6 (Endocrine System)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1JF0Y4eTH5_sBCZq47cgb_RRA7DL_HxC6/view?usp=drivesdk')"> <div class="unit-icon">👶</div> <div class="unit-title">Unit 7 (Reproductive System)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1wImdznPaqM3rbgUH9SoPfxymcsidm1zL')"> <div class="unit-icon">💧</div> <div class="unit-title">Unit 8 (Renal System)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📝</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1105</div>
+                                <div class="course-title">Practical</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1IvtvF1IgZ025eC_nJZ8rQdY15awqIjnp')"> <div class="unit-icon">🔬</div> <div class="unit-title">Practical Materials</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-section">
+                        <div class="resource-title">Additional Resources</div>
+                        <div class="section-card red" onclick="openLink('https://drive.google.com/drive/folders/1J_qXo0mt7-qnRtw6RUoD2B4TfPb_49Js')"> <div class="section-icon-container">❓</div> <div class="section-title">Previous Questions</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card blue" onclick="openLink('https://drive.google.com/drive/folders/1t-YAueY_Outb-QWfezd6hAm--cklCzdf')"> <div class="section-icon-container">📊</div> <div class="section-title">Question Analysis</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card yellow" onclick="openLink('https://drive.google.com/drive/folders/1CM2pSBZ2VO12nX5ocdsvAs9cQBeP99pR')"> <div class="section-icon-container">📚</div> <div class="section-title">Books</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card green" onclick="openLink('https://drive.google.com/drive/folders/1emse3Lt8XKbvFhmzHXgkERybKb4KWEUE')"> <div class="section-icon-container">📋</div> <div class="section-title">Syllabus</div> <div class="section-arrow">›</div> </div>
+                    </div>
+                </div>
+
+                <!-- Detail View for Semester 2 -->
+                <div id="semester2" class="detail-view">
+                    <div class="back-button" onclick="showHome()">←</div>
+                    <div class="detail-header">Psychology 2nd Semester</div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🌱</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1201</div>
+                                <div class="course-title">Psychology of Personal Growth</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Fatema-Tu-Zohra Binte Zaman and Dr. Rajeka Fardosh Tany</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1MsNBKOx2IRobJu5neTAtzDK472B677Yt')"> <div class="unit-icon">🗣️</div> <div class="unit-title">Unit 1 (Psychological Perspective of Language Development)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1xhP16iqPls_r82T3qcn8Ai2zPDx9EMAE')"> <div class="unit-icon">🤔</div> <div class="unit-title">Unit 2 (Thinking and Problem Solving)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1DRJA83UEZ6upf5c1-1rd1kTb68bEKEqk')"> <div class="unit-icon">💡</div> <div class="unit-title">Unit 3 (Intelligence)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1eLWWTnkFPPAm7mrgIJ2PAAvMwQkcI3Yz')"> <div class="unit-icon">🎭</div> <div class="unit-title">Unit 4 (Personality)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Qe8ZyCw4JZ4clmaPiFv9npL9qs49e9VM')"> <div class="unit-icon">💥</div> <div class="unit-title">Unit 5 (Conflict, Frustration and Stress)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1YCWFWZZPjEpMTUq3YBd-GOQP4RUFr_f3')"> <div class="unit-icon">😴</div> <div class="unit-title">Unit 6 (Sleep and Dreams)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🧬</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1202</div>
+                                <div class="course-title">Biological Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Ashoke Kumar Saha and Bijon Baroi</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/15aVNts1xIgfNpupHZJmAfdsISpnd4DWJ')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1JdGnNGI9BTTRC5qiAJPZcrXGm8rO8djY')"> <div class="unit-icon">🦠</div> <div class="unit-title">Unit 2 (Cell-Biology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1I-c-IwP9kyrNCAO46j9PzKMAkix-Z1Xz')"> <div class="unit-icon">➗</div> <div class="unit-title">Unit 3 (Mitosis and Meiosis Cell Division)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1vaKlvFzDKIM1KMN6AEg6H-7Bk3T26Ff5')"> <div class="unit-icon">⚡</div> <div class="unit-title">Unit 4 (Neural Communication)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1mFuKbRSQ28RmnsQIqcTN9bjxDMkKyo0M')"> <div class="unit-icon"> hormonal </div> <div class="unit-title">Unit 5 (Endocrinology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/18ityEM28-ILNZdG2PnsoQgeVrmZpJkUk')"> <div class="unit-icon">🐒</div> <div class="unit-title">Unit 6 (Behavior and Evolution)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1OxFhL6UZSe9fu8oj--4EC9g7l-aNOEbb/view?usp=drivesdk')"> <div class="unit-icon">✍️</div> <div class="unit-title">Biopsychology Draw</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📜</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1203</div>
+                                <div class="course-title">History of Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. H M Saidur Rahaman and Munira Azhar Urmee</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1lahujq31x2M_CKII_xZaexn3hd5AU6se')"> <div class="unit-icon">🏛️</div> <div class="unit-title">Unit 1 (Early thought and Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1dK2zCSE8rycv6o-P1OJ6IEu_roAUE3dJ')"> <div class="unit-icon">⚕️</div> <div class="unit-title">Unit 2 (Medical influence in Bio-Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1tQD4eLb2z8jLvucQ8vYzo4DEhEzW0s7D')"> <div class="unit-icon">🧪</div> <div class="unit-title">Unit 3 (The Beginning of Scientific Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12BDK_vy_aNOp79vgJ8rxoEHp7fjnJQvE')"> <div class="unit-icon">🔄</div> <div class="unit-title">Unit 4 (Early paradigms in Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-N15P9CzTH1oG8tjZQtjLh4DSK8HwAKi')"> <div class="unit-icon">🆕</div> <div class="unit-title">Unit 5 (Modern paradigms in Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Sev4GuvYrcDXjqJTJLW6NteDEIO5MG5k')"> <div class="unit-icon">📅</div> <div class="unit-title">Unit 6 (Psychology Today)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🇬🇧</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1204</div>
+                                <div class="course-title">Fundamentals of English</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Nore Nobi Nirobe and Hamida Akter</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Tz2raBb5VKnzUtK5-5BNQWudaLvYhMqZ')"> <div class="unit-icon">🔤</div> <div class="unit-title">Unit 1 (Vocabulary or Wording)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1VAzxpW17qVu_9OK-QMtCZm5LO6GTAKFX')"> <div class="unit-icon">📝</div> <div class="unit-title">Unit 2 (Grammars)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1hTUFqGFEbAYmcLUXnbWyj9jv5H5aT5Ly')"> <div class="unit-icon">📖</div> <div class="unit-title">Unit 3 (Reading Comprehension)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1qD_o5jj5Qxc8dwOmOASFH2l3soSWRVgX')"> <div class="unit-icon">✍️</div> <div class="unit-title">Unit 4 (Writing Skills)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://play.google.com/store/apps/details?id=com.magoosh.flashcards.gre')"> <div class="unit-icon">📱</div> <div class="unit-title">GRE practice Apps</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📝</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY1205</div>
+                                <div class="course-title">Practical</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1137vb5ms4pr39ZO-2O5rLrqKBknZnW6o')"> <div class="unit-icon">🔬</div> <div class="unit-title">Practical Materials</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-section">
+                        <div class="resource-title">Additional Resources</div>
+                        <div class="section-card red" onclick="openLink('https://drive.google.com/drive/folders/1j16FJ2lFGF7AzFIV5je0jHaJvtT1aPrS')"> <div class="section-icon-container">❓</div> <div class="section-title">Previous Questions</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card blue" onclick="openLink('https://drive.google.com/drive/folders/1iKqNRtaFHDlsYFZCa6IYwGrZYZurJzwU')"> <div class="section-icon-container">📊</div> <div class="section-title">Question Analysis</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card yellow" onclick="openLink('https://drive.google.com/drive/folders/1gCtoShtXc--9AkHOOmADhriRlAKzlJIT')"> <div class="section-icon-container">📚</div> <div class="section-title">Books</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card green" onclick="openLink('https://drive.google.com/drive/folders/1ysqhKEYwVpjwA-lt1b3ntmyJ0MkeSAU0')"> <div class="section-icon-container">📋</div> <div class="section-title">Syllabus</div> <div class="section-arrow">›</div> </div>
+                    </div>
+                </div>
+                 <div id="semester3" class="detail-view">
+                    <div class="back-button" onclick="showHome()">←</div>
+                    <div class="detail-header">Psychology 3rd Semester</div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">😟</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY2101</div>
+                                <div class="course-title">Introduction to Abnormal Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Farjana Ahamed and Shamima Akhter</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Aw1uxd54po7wiVB-cGbDSJm9QUhyLnWw')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Aw3eSSTyHP5vrezELEO9IOpVKWYgY4jT')"> <div class="unit-icon">🔗</div> <div class="unit-title">Unit 2 (Casual Factors of Abnormal Behavior)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1BMLegMWglbn1lPEH7wJBmQ08enlHXS_s')"> <div class="unit-icon">🏷️</div> <div class="unit-title">Unit 3 (Classification and Diagnosis)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1BlcpBQFz_-D_6t0zHSI0TY84iT3sWsVb')"> <div class="unit-icon">🔬</div> <div class="unit-title">Unit 4 (Research Methods in Abnormal Behaviour)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1MxNsdluL5S1fULbkbzbdKxmga5FJCoQj')"> <div class="unit-icon">⚖️</div> <div class="unit-title">Unit 5 (Stress and Adjustment Disorders)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1BtkG9NpsPXYzyoUNR8dM7JVLhbC8HEct')"> <div class="unit-icon">😰</div> <div class="unit-title">Unit 6 (Anxiety Based Disorder)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1CqMxMKyyFPCmpDqdxz1PDo9p8Kf5sAMM')"> <div class="unit-icon">💊</div> <div class="unit-title">Unit 7 (Substance Related and Addictive Disorder)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1gvBYSVCNZ-gfl-UzmNa52sXI-Nb18bAc/view?usp=drivesdk')"> <div class="unit-icon">📄</div> <div class="unit-title">Abnormal-Psychology-I-PSY2101-Sheet</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Cb0waeWMsS79YDAgyrMwvFewFUM8CDpK')"> <div class="unit-icon">📚</div> <div class="unit-title">Book</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">👥</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY2102</div>
+                                <div class="course-title">Fundamentals of Social Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Fatema-Tu-Zohra Binte Zaman and Dr. Rajeka Fardosh Tany</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1r2UnmSezKSB9b0SbUNv9za8_')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction and Methods)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/19DKr32_WYoFfSPpVBleq2kRtjoKhNt1y')"> <div class="unit-icon">🤝</div> <div class="unit-title">Unit 2 (Socialization)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12NgNfVmKYkw8QwCcHmZzUud0up4MtFQz')"> <div class="unit-icon">💬</div> <div class="unit-title">Unit 3 (Attitudes)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1MJxsNmW6pu5wMc460A972ZSbIMuS13yr')"> <div class="unit-icon">👁️‍🗨️</div> <div class="unit-title">Unit 4 (Social Perception)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1ok0z8ooJHRz5nGULgteajZO3DSd30OtL')"> <div class="unit-icon">📞</div> <div class="unit-title">Unit 5 (Communication)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12HlJ0PC1qT-hletOL9GTr3V_nN5G8s-8')"> <div class="unit-icon">👑</div> <div class="unit-title">Unit 6 (Leadership)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1PvnxwX2eW2iC_Hld36iNOemUUk8TKFCO')"> <div class="unit-icon">🎬</div> <div class="unit-title">Unit 7 (Social Psychology in Action)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1gUIpO5mBXpQC-QUXvapzsd0EBgbA00rI')"> <div class="unit-icon">🏗️</div> <div class="unit-title">Unit 8 (Group Structure and Process)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1HEsH755G9fBQtyYKB4zUGIzfxbXWup48/view?usp=drivesdk')"> <div class="unit-icon">📄</div> <div class="unit-title">Social Psychology-I (PSY2102) -Sheet</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1EyBPAaBauWbCkQRANxN-sKXD7CeSz8v1/view?usp=drivesdk')"> <div class="unit-icon">📚</div> <div class="unit-title">Book</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">👶</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY2103</div>
+                                <div class="course-title">Child Development</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Noor Muhammad and Dr. Kishor Roy</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1H1EMfzYop4dX9lLRgve5puMXUHHHOoFF')"> <div class="unit-icon">🌳</div> <div class="unit-title">Unit 1 (The Nature of Developmental Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1GTrewsrqvAZPHVC6NNcUoLfbQE4AeBeN')"> <div class="unit-icon">🔬</div> <div class="unit-title">Unit 2 (Research Methods)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1GdufmlC93JegrCMtOQSnSiMfLwW5rwKG')"> <div class="unit-icon">📜</div> <div class="unit-title">Unit 3 (Theories of Child Development)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1GgnABlBR5s9Y5Iqd9sf-fT41HwLcKUsN')"> <div class="unit-icon">🤰</div> <div class="unit-title">Unit 4 (Prenatal Development)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1GkGrXZ8M0DBOJ_TE2Bu05JIphfFE8R2c')"> <div class="unit-icon">🍼</div> <div class="unit-title">Unit 5 (The Neonate)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1GrTTFb2g16-9riJeEcGgInli7rUFOn8N')"> <div class="unit-icon">👣</div> <div class="unit-title">Unit 6 (Infancy)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Gv9df-AtBiemN1CojE4zhEi2XG8eY9u4')"> <div class="unit-icon">🧒</div> <div class="unit-title">Unit 7 (Childhood)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1iRqt4EKozKYb8U4F7TSUznJh4kTtqzwL/view?usp=drivesdk')"> <div class="unit-icon">📄</div> <div class="unit-title">Child Development (PSY2103) Sheet</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1H5IdHWFVBtmlDxM3n8t0wXBtr6XBAOvd/view?usp=drivesdk')"> <div class="unit-icon">📚</div> <div class="unit-title">Book</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🇧🇩</div>
+                            <div class="course-text">
+                                <div class="course-code">HEBR2104</div>
+                                <div class="course-title">History of the Emergence of Bangladesh</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1iYqsGlRfHuAcgfXYuYI--11EcJTNfAve/view?usp=drivesdk')"> <div class="unit-icon">📖</div> <div class="unit-title">Course Materials</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📝</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY2105</div>
+                                <div class="course-title">Practical</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1F6lYjFN847Vpf-RIV5PeLQyYYYJYM67G')"> <div class="unit-icon">🔬</div> <div class="unit-title">Practical Materials</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="resource-section">
+                        <div class="resource-title">Additional Resources</div>
+                        <div class="section-card red" onclick="openLink('https://drive.google.com/drive/folders/147xOXOv_VqyEBm1gVjX7Nh8aXzXmPps6')"> <div class="section-icon-container">❓</div> <div class="section-title">Previous Questions</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card blue" onclick="openLink('https://drive.google.com/file/d/1gmgXTLLgOaY188KYwxG3_e35Ric7bE8g/view?usp=drivesdk')"> <div class="section-icon-container">📊</div> <div class="section-title">Question Analysis</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card green" onclick="openLink('https://drive.google.com/file/d/1EIh4Dj2P6yzst9Z-HWDn2ycOoMoqE5ZA/view?usp=drivesdk')"> <div class="section-icon-container">📋</div> <div class="section-title">Syllabus</div> <div class="section-arrow">›</div> </div>
+                    </div>
+                </div>
+                 <div id="semester4" class="detail-view">
+                    <div class="back-button" onclick="showHome()">←</div>
+                    <div class="detail-header">Psychology 4th Semester</div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📈</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY2201</div>
+                                <div class="course-title">Psychological Statistics</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Samsad Afrin Himi and Md Shaheen Mollah</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1A92xuuCEpIjM4l49JXJ0F4fVR--l4yrE')"> <div class="unit-icon">🎲</div> <div class="unit-title">Unit 1 (Probability and Binomial Distribution)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1A9siuNkwOyxKEGzLHFvjL_5m9V7mY-Vw')"> <div class="unit-icon">🔔</div> <div class="unit-title">Unit 2 (Normal Distribution/Curve)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1AB3OsmopLjUCB6__9pLBolGHt16ltxhb')"> <div class="unit-icon">📦</div> <div class="unit-title">Unit 3 (Sampling)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1AETq6ZFwMBKZjom3QGoBMfBCW3bma58X')"> <div class="unit-icon">🎯</div> <div class="unit-title">Unit 4 (Estimation of Parameters)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1A3TblVFU1bpi03mDK6750GUE85p8wQVf')"> <div class="unit-icon">🔗</div> <div class="unit-title">Unit 5 (Correlation)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1A2zTnf2rf3mExg8OyB94sLZorVuyy9Ws')"> <div class="unit-icon">🔄</div> <div class="unit-title">Unit 6 (Transformation)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1TQqAe978UI8Xnc79KsX1ogKQ1iOWf-n9/view?usp=drivesdk')"> <div class="unit-icon">📄</div> <div class="unit-title">PSY-2201 [Statistics] Sheet Final</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1AJVDibRtZBcSTe9glnTmD_yU0z7ZccE1')"> <div class="unit-icon">📚</div> <div class="unit-title">Book</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1iXfyAQZ4cSPD7xlPRHTiMJ5UveMWr4uV')"> <div class="unit-icon">❓</div> <div class="unit-title">Question (18 Batch)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1AFdkwdsNkqlQHPPZrtGOM0-M5VR4S49-')"> <div class="unit-icon">❓</div> <div class="unit-title">Statistics qs of 15 Batch</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🧑</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY2202</div>
+                                <div class="course-title">Adolescence and Early Adulthood</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Farjana Ahamed and Dr. Kishor Roy</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1bZchv5dN7UviRPmlq9qIzy_HaVMwNbum')"> <div class="unit-icon">🌸</div> <div class="unit-title">Unit 1 (Puberty)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1beSc2XOxoTAy11Ss9NgX7gE5LdlSK5Zr')"> <div class="unit-icon">🧑‍🎤</div> <div class="unit-title">Unit 2 (Adolescence)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1btVvFeqX6UxBipYfVMbjURDOr0b1yved')"> <div class="unit-icon">👥</div> <div class="unit-title">Unit 3 (Social and Personality Development)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1buiMufDtGgRmQbGYpfjKdzPRCrOwGN7e')"> <div class="unit-icon">⚠️</div> <div class="unit-title">Unit 4 (Problems of Adolescence)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1bv3EHKtbOmtbzDEV1wxMXi2U6PpQKJBJ')"> <div class="unit-icon">👩‍💼</div> <div class="unit-title">Unit 5 (Early Adulthood)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1cBG01yJQjVeaYSz-ePnO8Qt1TbETE5FE')"> <div class="unit-icon">❤️</div> <div class="unit-title">Unit 6 (Marriage & Parenthood)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1cTs9tnzYqxat9UxSU5A1V-Aoq1pjXUjc')"> <div class="unit-icon">💼</div> <div class="unit-title">Unit 7 (Vocational Adjustment)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1THMVeYxKQxna2HFmSO0FyH-T7q3UASnV/view?usp=drivesdk')"> <div class="unit-icon">📄</div> <div class="unit-title">PSY-2202 Sheet</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1cUQfTX9V3sqFvMYWbh5Oi5OxYJ_aUksT')"> <div class="unit-icon">📚</div> <div class="unit-title">Book</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🏢</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY2203</div>
+                                <div class="course-title">Industrial and Organizational Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Noor Muhammad and Dr. Muhammad Akram Uzzaman</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1b3GraessSD0ol9T52CkYotIaAKSFxr8D')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11iDcq-LLljD_69sxpDn4ZCwi2NZAJZOm')"> <div class="unit-icon">🔬</div> <div class="unit-title">Unit 2 (Research Methods in I/O Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11YFnE7oCwzaVeR4bDdxUK_ezX-zWSi0a')"> <div class="unit-icon">📋</div> <div class="unit-title">Unit 3 (Job Analysis and Evaluation)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11iQR4I0UhFJNhlJFCfDf9Z3Ar9YXWoiC')"> <div class="unit-icon">👥</div> <div class="unit-title">Unit 4 (Personnel Selection)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11Mj1vpO3X5M6YVLKM67vIFiMFMgere0G')"> <div class="unit-icon">⭐</div> <div class="unit-title">Unit 5 (Performance Appraisal)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11slaOTHSB4pT0gjpDRGpLzTVmgd1jjuJ')"> <div class="unit-icon">🎓</div> <div class="unit-title">Unit 6 (Personnel Training)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/file/d/1TNfYioWSot1ODVxt62JfdM4uAaLXoLud/view?usp=drivesdk')"> <div class="unit-icon">📄</div> <div class="unit-title">PSY-2203 Sheet</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1b7lqH-fhAHDVpzRNrRRbZm3hvx2RRNhG')"> <div class="unit-icon">📚</div> <div class="unit-title">Book</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🔍</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY2204</div>
+                                <div class="course-title">Fundamentals of Psychological Research</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Prof. Dr. Muhmmad Akram Uzzaman and Md. Shaheen Mollah</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/15zyIDoALI-BhRqP4rcBu_1DbZTjCxp-y')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/162Ga1Mjb3N8fo7FjU22qQAboKR3QSoiX')"> <div class="unit-icon">📂</div> <div class="unit-title">Unit 2 (Classification of Research)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/128uOyYe9LsH7mtuEiOmFF38QLEYZdyqA')"> <div class="unit-icon">🔢</div> <div class="unit-title">Unit 3 (Research Process: An Eight Step Model)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/163N7j83PqXl43Uu2Ln254tTvNG8fnOsD')"> <div class="unit-icon">❓</div> <div class="unit-title">Unit 4 (Formulating a Research Problem)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/167CXLlaY7sK-OXjNgdVYK__5bPLoz59v')"> <div class="unit-icon">🔧</div> <div class="unit-title">Unit 5 (Identifying Variable)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/169WrJ0hcNrF9b5WsMXlfj44NEWy42BJf')"> <div class="unit-icon">💡</div> <div class="unit-title">Unit 6 (Constructing Hypotheses)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1dqhd6NmC2sN3akBkAktGhxLSykSRSZlE')"> <div class="unit-icon">📐</div> <div class="unit-title">Unit 7 (The Research Design)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1drMltsSLgaGYMm3OjWYh9vhEeIX-SXAR')"> <div class="unit-icon">✏️</div> <div class="unit-title">Unit 8 (Selecting a Study Design)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1d7Gml6fM0xLLeaEgHYYJ25zMXGPjfNgT')"> <div class="unit-icon">📊</div> <div class="unit-title">Question Analysis</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/16FJ0sOpNx-Ir47mbAzUQed8lJB6Ah-f6')"> <div class="unit-icon">❓</div> <div class="unit-title">Questions of Methods of Research -1</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1h2Pi96Z7NnQRNFnOTmbpGBnGn6hy1fnP')"> <div class="unit-icon">📄</div> <div class="unit-title">Final Sheet</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/16QWdWfvG5eDNa4a9P5G3nsluM6fPIE4d')"> <div class="unit-icon">📚</div> <div class="unit-title">Book</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📝</div>
+                            <div class="course-text">
+                                <div class="course-code">PSYL2205</div>
+                                <div class="course-title">Practical (Experiment)</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1epo8G6KepGCPPRg5e0vG5XOw_rPfjE2Y')"> <div class="unit-icon">🔬</div> <div class="unit-title">Practical Materials</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-section">
+                        <div class="resource-title">Additional Resources</div>
+                        <div class="section-card red" onclick="openLink('https://drive.google.com/drive/folders/1b9rW0J_eh1wFilAsm5k9t4IpgWRPGeai')"> <div class="section-icon-container">❓</div> <div class="section-title">Previous Questions</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card blue" onclick="openLink('https://drive.google.com/drive/folders/1CotELv-cY2yjS8LoE6j5k8LQ51otdw9x')"> <div class="section-icon-container">📊</div> <div class="section-title">Question Analysis</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card green" onclick="openLink('https://drive.google.com/drive/folders/1QmT3tNJCvIfO2AybnC7Wo0ub13EaYIiS')"> <div class="section-icon-container">📋</div> <div class="section-title">Syllabus</div> <div class="section-arrow">›</div> </div>
+                    </div>
+                </div>
+                 <div id="semester5" class="detail-view">
+                    <div class="back-button" onclick="showHome()">←</div>
+                    <div class="detail-header">Psychology 5th Semester</div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🧠</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY3101</div>
+                                <div class="course-title">Common Mental Health Disorders</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Farjana Ahamed and Dr. Sanjida Khan</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1jZmYvvJEllJkaMMxD0AgvEgdYkCqjUrX')"> <div class="unit-icon">🧘</div> <div class="unit-title">Unit 1 (Psycho-Physiological Disorders)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1g49XnegOeLM4Y4F636GcCc3Uk-1OccTt')"> <div class="unit-icon">🎭</div> <div class="unit-title">Unit 2 (Somatoform and Dissociative Disorders)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1fGja14VyieRIZ1C0f4VQ_G4w_ZBtdS5_')"> <div class="unit-icon">😊</div> <div class="unit-title">Unit 3 (Mood Disorders)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1bv_KxS00rHXGg01wyaD0iCuEyp8ZG7A4')"> <div class="unit-icon">🌀</div> <div class="unit-title">Unit 4 (Schizophrenic Disorders)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1EQOEdrsv3YdioCwDYcEH0wJuhwEHMa-a')"> <div class="unit-icon">👤</div> <div class="unit-title">Unit 5 (Personality Disorders)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1hQ3X4uOs-8yPIWrmP0NOrgV73UWyVmPu')"> <div class="unit-icon">👶</div> <div class="unit-title">Unit 6 (Developmental Disorders)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1fxwqx_dpehXmPlpywghP4vxCWeqGotT2')"> <div class="unit-icon">💔</div> <div class="unit-title">Unit 7 (Sexual Dysfunction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/14QqUgKFiztlp-Ir9vaDLAXiDBGPHcKdo')"> <div class="unit-icon">❤️</div> <div class="unit-title">Unit 8 (Paraphilic Disorder)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🤝</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY3102</div>
+                                <div class="course-title">Social Psychology and Behavior</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Asoke Kumar Saha, and Dr. Fatema -Tu-Zohra Binte Zaman</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/15JXnj6K9II5v56HjtWzuGxoxfu-jfHN2')"> <div class="unit-icon">📏</div> <div class="unit-title">Unit 1 (Norms and Conformity)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1nCCXY4EdYJxnde002SM6TZBoEPzvrJIv')"> <div class="unit-icon">📺</div> <div class="unit-title">Unit 2 (Mass Communication and Collective Behavior)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-htchMhWnAV3UnLN4S7kuiFKf1o1gYqj')"> <div class="unit-icon">❤️</div> <div class="unit-title">Unit 3 (Interpersonal Attraction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11kRdqess0hQNVkSAubYX7GLMXpgBYF1R')"> <div class="unit-icon">💞</div> <div class="unit-title">Unit 4 (Intimate Relationships)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1scjNTRw81cgvznwFshhJQ7qhDLaJZF5x')"> <div class="unit-icon">👥</div> <div class="unit-title">Unit 5 (Social Psychology of Groups)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zXjr0mDGC3UNw3wn8Z-YYZDXEgli4qaZ')"> <div class="unit-icon">🇧🇩</div> <div class="unit-title">Unit 6 (Contemporary Research in Bangladesh)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📝</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY3103</div>
+                                <div class="course-title">Psychological Test and Measurement</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">MD. Kazi Nur Hossain Mukul and Hamida Akter</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Ocmm_SOh-Cn9kWU3Q6S5vsxo957fHG6s')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1pV5EgtXdSWZpppSnZiB5PyffQL9dMSBQ')"> <div class="unit-icon">🔬</div> <div class="unit-title">Unit 2 (Nature and Use of Psychological Tests)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/15wi5akG15cncLXgYbHek2bwj8Nat0Wu5')"> <div class="unit-icon">🗂️</div> <div class="unit-title">Unit 3 (Classification of Psychological Tests)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/13OcLF0GTgy5GkhalKfWw6Sh7IdHBWuoX')"> <div class="unit-icon">🏗️</div> <div class="unit-title">Unit 4 (Test Construction and Adaptation)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1nMA0XArIh820brQMrzd3sakvMcu0XUDt')"> <div class="unit-icon">✍️</div> <div class="unit-title">Unit 5 (Test Administration and Scoring)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11ajHROm6eJz-y186mGhMlW5Q0EnNd3Wf')"> <div class="unit-icon">📈</div> <div class="unit-title">Unit 6 (Test Standardization and Norms)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1exR1vpopPXFl_tdxAvncM8DkXEd9Yjk8')"> <div class="unit-icon">✅</div> <div class="unit-title">Unit 7 (Reliability)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1gLPVJ-Y9nXGkrpSM25o0u9G6hUPI9ucf')"> <div class="unit-icon">🎯</div> <div class="unit-title">Unit 8 (Validity)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">👴</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY3104</div>
+                                <div class="course-title">Middle Age and Aging</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Kishor Roy and Dr. Rajeka Fardosh Tany</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1xnScld1UcW2yo4pZfuc-5YGQU6ziu4_f')"> <div class="unit-icon">🧑‍🦳</div> <div class="unit-title">Unit 1 (Middle Adulthood)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1byaknTpixJUGtX3DrEsCRL2ywPYNT16B')"> <div class="unit-icon">⚖️</div> <div class="unit-title">Unit 2 (Adjustments in Middle Age)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1aJNbE_4rlQe7aiB-uQJR4jo2VOPsLBUT')"> <div class="unit-icon">👵</div> <div class="unit-title">Unit 3 (Late Adulthood/ Aging)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1VnvzfU4yjiX3xXYqoKTgjK90mQPHTwzM')"> <div class="unit-icon">📜</div> <div class="unit-title">Unit 4 (Theories of Aging)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1WFKjd6lrXrjoPCJvGcfmf4yeZ8ye6wum')"> <div class="unit-icon">🤝</div> <div class="unit-title">Unit 5 (Dependency)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1hvTo8JgvEwXaGNwO8rOT-PZ0LFTOtZyx')"> <div class="unit-icon">🕊️</div> <div class="unit-title">Unit 6 (Adjustment with Death and Bereavement)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🧪</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY3105</div>
+                                <div class="course-title">Methods of Psychological Research</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Md. Shaheen Mollah and Kazi Nur Hossain</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1v8mH50ivn6P711-A85lGqFuKHHxB4FNH')"> <div class="unit-icon">📊</div> <div class="unit-title">Unit 1 (Methods of Data Collection)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1lQ3SMHTVRfoAABF5v1qPKFyVZWSEWM-x')"> <div class="unit-icon">📈</div> <div class="unit-title">Unit 2 (Other Descriptive Methods)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1SnHXdWqWgjDoo_ypkfT-vx3aKOw0mkUX')"> <div class="unit-icon">🔬</div> <div class="unit-title">Unit 3 (Experimental Methods)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1BTdrFX4nAce1JRNz4IxxAkZ2Ku_eN_gl')"> <div class="unit-icon">⚙️</div> <div class="unit-title">Unit 4 (Processing & Analysis of Data)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1JwUrltcK5oA7W7lsgus-y-0LMe1AhqIH')"> <div class="unit-icon">✍️</div> <div class="unit-title">Unit 5 (Writing a Research Proposal)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-bSjhZtC20wyMmFw2Rpag5OGM48w3WSd')"> <div class="unit-icon">📜</div> <div class="unit-title">Unit 6 (Ethics in Psychological Research)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📊</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY3106</div>
+                                <div class="course-title">Statistical Inference</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Samsad Afrin Himi and Md. Nore Nobi Nirobe</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1NohqugCZSEI0T_vLPsCsYG2YRl6AfWtf')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Basic Concepts)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11leFhCiByY7HrIPKDEVmKmfXSPr17HH4')"> <div class="unit-icon">⚖️</div> <div class="unit-title">Unit 2 (Parametric and Non-parametric Test)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1yNmhX_EiI6VrzGapg7RJj4XoMwC5jZh1')"> <div class="unit-icon">🧪</div> <div class="unit-title">Unit 3 (Tests of Significance: z & t-test)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11uMDe_Glk8i1Rl6Tqd_eAmquqB4ek47Z')"> <div class="unit-icon">📈</div> <div class="unit-title">Unit 4 (Analysis of Variance)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/15Dnrl1I9CAqO03FJU03FEiHQwTqlTSPz')"> <div class="unit-icon">📉</div> <div class="unit-title">Unit 5 (Non-Parametric Tests)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1VhTFhS9jE0rUiGMtQVSVzR2I1ppau1dw')"> <div class="unit-icon">🧩</div> <div class="unit-title">Unit 6 (Factor Analysis)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-section">
+                        <div class="resource-title">Additional Resources</div>
+                        <div class="section-card purple" onclick="openLink('https://drive.google.com/drive/folders/1tZezqiejAfnPaDSEc_ywX0rxt23Mtbdg')"> <div class="section-icon-container">📝</div> <div class="section-title">Practical</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card red" onclick="openLink('https://drive.google.com/drive/folders/1tcFySrcKWfIsCKU3Mq5tbDQNssWfkjFq')"> <div class="section-icon-container">❓</div> <div class="section-title">Previous Questions</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card blue" onclick="openLink('https://drive.google.com/drive/folders/1td1seOOxE-ZOt7Y6XzNKYPnv3o-DTx7f')"> <div class="section-icon-container">📊</div> <div class="section-title">Question Analysis</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card yellow" onclick="openLink('https://drive.google.com/drive/folders/1w8668W5mjwFyaGzALTSFhas3n0Hx5OHH')"> <div class="section-icon-container">📚</div> <div class="section-title">Books</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card green" onclick="openLink('https://drive.google.com/drive/folders/1tiiaDwh2fHvmpOQunip67fMMUS0eyz-p')"> <div class="section-icon-container">📋</div> <div class="section-title">Syllabus</div> <div class="section-arrow">›</div> </div>
+                    </div>
+                </div>
+                 <div id="semester6" class="detail-view">
+                    <div class="back-button" onclick="showHome()">←</div>
+                    <div class="detail-header">Psychology 6th Semester</div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🏫</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY3201</div>
+                                <div class="course-title">Introduction to Educational Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Professor Dr. Ashoke Kumar Saha and Professor Dr. Muhammad Akram Uzzaman</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12sBFG9zVCqDI8P1p8obTS3_5uywfXIoW')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12qktkXU9VK9i9t82U87Zq11U7le3LtRe')"> <div class="unit-icon">🧠</div> <div class="unit-title">Unit 2 (Development and Learning)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12nPdDowwc8vE5qfhUlasIMBeU9NbpMng')"> <div class="unit-icon">👨‍👩‍👧</div> <div class="unit-title">Unit 3 (Learner and his Family)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12lWrPLm1Toch71KV46Cik1q1bA7KzMBU')"> <div class="unit-icon">👥</div> <div class="unit-title">Unit 4 (Learner in his Group)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12jglkubYSELeDHt_o8ffGWihyWv4Ilqj')"> <div class="unit-icon">💡</div> <div class="unit-title">Unit 5 (Learning Concept and Applications)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12_LsOyoi7QOjgs651mAo5wekV5SdtgMj')"> <div class="unit-icon">⚠️</div> <div class="unit-title">Unit 6 (Problem Behavior in the Classroom)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/12ZFIY7EUL-ei75hLSB_gWdCOoVjiuXji')"> <div class="unit-icon">🔄</div> <div class="unit-title">Unit 7 (Learning Process)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🌳</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY3202</div>
+                                <div class="course-title">Environmental Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Munira Azhar Urmee and Md. Rony Hossan</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1PXg7SweRg29rK7sr9UlBAJlxX4muw55n')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1bPexrZ-jgMqzN7WjbGVhhRdtceBd0YTX')"> <div class="unit-icon">🗺️</div> <div class="unit-title">Unit 2 (Environmental Perception and Cognition)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1iDgvgADlK6aWNZWATSv45T9pZD-uyt2g')"> <div class="unit-icon">🔄</div> <div class="unit-title">Unit 3 (Environment-Behaviour relation)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11AjJWNSkAOoozDvuWJ_0v3es7C9UeCAH')"> <div class="unit-icon">🔊</div> <div class="unit-title">Unit 4 (Environmental Noise)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1_I9DaKOne4pYgC3hdgZ5Lh_4aCmKdHHk')"> <div class="unit-icon">☀️</div> <div class="unit-title">Unit 5 (Weather, Climate and Behaviour)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1GyfPmfJXSnx8f49yZt8op6vAJ_tQlQOw')"> <div class="unit-icon">🌋</div> <div class="unit-title">Unit 6 (Disasters and Hazards)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1C5cQOThYvi1GYPBEs5HIiqqTz1Ub26Eu')"> <div class="unit-icon">💨</div> <div class="unit-title">Unit 7 (Pollution)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">💼</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY3203</div>
+                                <div class="course-title">Employee Productivity and Wellbeing</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Noor Muhammad and Dr. Fatema-Tu-Zohra Binte Zaman</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1goOrXo-DOYLL1IvzxNmYbcLKz_HBuWHa')"> <div class="unit-icon">😊</div> <div class="unit-title">Unit 1 (Industrial Morale)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1gFggjY58u1M8MC-HB5Bq_N6Mw0M1rEAA')"> <div class="unit-icon">👍</div> <div class="unit-title">Unit 2 (Job Satisfaction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1y4pV1nVSYSOCUwka71wvxBtrAxnMRGX2')"> <div class="unit-icon">📈</div> <div class="unit-title">Unit 3 (Productive and Counterproductive Behavior)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Lw4FlU5bWGMn8bL4lxR366aurQqgfA2o')"> <div class="unit-icon">⚙️</div> <div class="unit-title">Unit 4 (Engineering Psychology)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1vuWojDt_UqzjTL6zItswvN4vMtAoYGGF')"> <div class="unit-icon">🏢</div> <div class="unit-title">Unit 5 (Workplace Design)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1I3u8Y58aECxyHf2wHPg0A_Xhig8cUNpu')"> <div class="unit-icon">🛡️</div> <div class="unit-title">Unit 6 (Safety, Violence and Health)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1GUGHOGrUzfwF7ed0TTrjKf8XIadqnGnJ')"> <div class="unit-icon">🛒</div> <div class="unit-title">Unit 7 (Consumer Psychology)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">💻</div>
+                            <div class="course-text">
+                                <div class="course-code">MATR3204</div>
+                                <div class="course-title">Application of Computer in Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Nore Nobi Nirobe and Hamida Akter</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1XM352MimWyHZ73YDsK4dcR1avntZckG2')"> <div class="unit-icon">🖥️</div> <div class="unit-title">Unit 1 (Introduction to Computer)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1W38BsJzDFd_Z0s8BBmcpZK2vAZxKR3_Y')"> <div class="unit-icon">🔢</div> <div class="unit-title">Unit 2 (Number Systems & Computer Arithmetic)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1bExRRQJympIJ8Y-3jNtDRZO6iRtz1A4X')"> <div class="unit-icon">💾</div> <div class="unit-title">Unit 3 (Computer Memory)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1NUVZHCv-LSI8R3Mo4LNyEGCqehOfP5oo')"> <div class="unit-icon">💿</div> <div class="unit-title">Unit 4 (Computer Software & Operating System)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/18kSW9GZxe3Ytrw5m2-uFiHcrRFSqsg3U')"> <div class="unit-icon">🌐</div> <div class="unit-title">Unit 5 (Data Communication & Computer Network)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1cEnworSQKxChQuzu57pAJhqAWyIIHzmT')"> <div class="unit-icon">💼</div> <div class="unit-title">Unit 6 (Microsoft Office)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1G8lY5x_NVjRPVjKNeNU9EGj1O6-buYmG')"> <div class="unit-icon">📊</div> <div class="unit-title">Unit 7 (SPSS)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1JJbBZxDJOpmYwD_sx3QGDE9t2y2vEBTG')"> <div class="unit-icon">🌍</div> <div class="unit-title">Unit 8 (The Internet)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">✅</div>
+                            <div class="course-text">
+                                <div class="course-code">PS3205</div>
+                                <div class="course-title">Application of Psychological Testing</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Sanjida Khan and Shamima Akter</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1nN2s2cih2m6M-Ra6UEDgqpvpsBrqSk0T')"> <div class="unit-icon">📜</div> <div class="unit-title">Unit 1 (Ethical & Social Consideration in Testing)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1jbQwAUjoy8fCA7LDu49t8lqrOzEwcbu7')"> <div class="unit-icon">💡</div> <div class="unit-title">Unit 2 (Measurement of Intelligence)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1GEwBOPk5g312Jb_II1ZJZry8jvtazTHG')"> <div class="unit-icon">🎯</div> <div class="unit-title">Unit 3 (Aptitude Tests)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1eMkc5Byr4IJM69eXI4bvaEwqjuai_nPZ')"> <div class="unit-icon">🏆</div> <div class="unit-title">Unit 4 (Achievement Tests)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1KazM26QgfwGW3DsYFNfJjbGVSBcFD3IB')"> <div class="unit-icon">👤</div> <div class="unit-title">Unit 5 (Measurement of Personality)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1RxYCT4eIw6UDOLFlXTkL3YGm2cyYt0uj')"> <div class="unit-icon">❤️</div> <div class="unit-title">Unit 6 (Measures of Attitudes, Interests and Values)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-section">
+                        <div class="resource-title">Additional Resources</div>
+                        <div class="section-card purple" onclick="openLink('https://drive.google.com/drive/folders/17KYBLv8wSWzTE7v_TpJvSb40i7y3chMf')"> <div class="section-icon-container">📝</div> <div class="section-title">Practical</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card red" onclick="openLink('https://drive.google.com/drive/folders/1ZJwBQXN3pND_gD7kB94Vdxq1uNNALbg_')"> <div class="section-icon-container">❓</div> <div class="section-title">Previous Questions</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card blue" onclick="openLink('https://drive.google.com/drive/folders/1Vv25YkHcBdqcKLJNuTYd13Jhd-_JU4t-')"> <div class="section-icon-container">📊</div> <div class="section-title">Question Analysis</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card yellow" onclick="openLink('https://drive.google.com/drive/folders/1M1ex3QFWwk7iqCm6_vsW0pq6lgJ1Y_IO')"> <div class="section-icon-container">📚</div> <div class="section-title">Books</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card green" onclick="openLink('https://drive.google.com/drive/folders/1k00JNy78XVZwJ6dVZ9QW4_FPrBZ_tnf_')"> <div class="section-icon-container">📋</div> <div class="section-title">Syllabus</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card purple" onclick="openLink('https://drive.google.com/drive/folders/12Fr63mzyza39erW7lIFGYZFezK3hPtZF')"> <div class="section-icon-container">📄</div> <div class="section-title">Final Sheet</div> <div class="section-arrow">›</div> </div>
+                    </div>
+                </div>
+                 <div id="semester7" class="detail-view">
+                    <div class="back-button" onclick="showHome()">←</div>
+                    <div class="detail-header">Psychology 7th Semester</div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🗣️</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4101</div>
+                                <div class="course-title">Introduction to Counseling</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Farjana Ahamed and Dr. Rajeka Fardosh Tany</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zMSMjCIgVI69uVagtBldM-tG6ZI_HPnb')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction to Counselling)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zRm2vl0F7GgJ5g5zz8hWHXivDW57yStP')"> <div class="unit-icon">🧠</div> <div class="unit-title">Unit 2 (Psychoanalytic and Cognitive Approaches)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zbaL4nJpuKcDEcIh3a3Vosv2KY5G889b')"> <div class="unit-icon">❤️</div> <div class="unit-title">Unit 3 (Humanistic Approaches)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zdUko3tKhuaM1FLLZjsbZKiWU7RHeOdl')"> <div class="unit-icon">🔄</div> <div class="unit-title">Unit 4 (Counseling Process)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zf6TNl39j-yK89UyLDafKMYcPhutpMKM')"> <div class="unit-icon">🔧</div> <div class="unit-title">Unit 5 (Skills and Techniques)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🔬</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4102</div>
+                                <div class="course-title">Experimental Design and Statistics</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Md. Shaheen Mollah and Kazi Nur Hossain</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zsNBBSMavbYr5FaLzZprzhf4biudQvoh')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction to Experimental Design)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zuPAg1bbYU-cTsUPs7AaMFblQafINT3I')"> <div class="unit-icon">📐</div> <div class="unit-title">Unit 2 (Some Important Designs)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zwk4GDkEmyFfdTHsp4mNB_Qg60d4iiPC')"> <div class="unit-icon">📈</div> <div class="unit-title">Unit 3 (Analysis of Variance)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1JovI-x4EzUJcO2oDK_gzg5O7HwYlzDXu')"> <div class="unit-icon">??</div> <div class="unit-title">Unit 4 (Factorial Designs)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🧑‍💼</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4103</div>
+                                <div class="course-title">Human Resource Development</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Prof. Dr. Asoke Kumar Saha and Dr. H M Saidur Rahaman</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-6rCsf2BEdWbEF4H8LlSP0d6Ifgmwk4H')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Fundamentals of HRM)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-FYr6HS-Ukcw1fZ6RY-JGiY_AoGkqZc-')"> <div class="unit-icon">📅</div> <div class="unit-title">Unit 2 (HR Planning and Job Analysis)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-JT1kunB1cEkscHoUtZvLFNv3fcvEORX')"> <div class="unit-icon">📍</div> <div class="unit-title">Unit 3 (Orientation and Placement)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-PuTNZ4jzpciFf9KyCrdZWRkEbhoTmXc')"> <div class="unit-icon">🎓</div> <div class="unit-title">Unit 4 (Training and Development)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-V2cJGnRFJPTMD8kjUYOmV02KugKo1Cr')"> <div class="unit-icon">🚀</div> <div class="unit-title">Unit 5 (Career Planning)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-VFEtu-B-KIRj06Zh3I_P0pVL72OZU81')"> <div class="unit-icon">⭐</div> <div class="unit-title">Unit 6 (Performance Appraisal)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-VPl8EVFtBACNiVysADscLIUKGRO0Ceu')"> <div class="unit-icon">🎁</div> <div class="unit-title">Unit 7 (Benefits and Services)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📖</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4104</div>
+                                <div class="course-title">Theories of Learning</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Kishor Roy and Bijon Baroi</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-YUGmOKhyCU_Mol2PeVpayORYaoqgrDg')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (The Nature of Learning Theories)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-gkQuaGoXkMznB00e9uBIAG7YuUeHR15')"> <div class="unit-icon">🔗</div> <div class="unit-title">Unit 2 (Thorndike’s Connectionism)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-qbRK43cOQI88W5ABpygPr26oQdfBHYA')"> <div class="unit-icon">🔔</div> <div class="unit-title">Unit 3 (Pavlov’s Classical Conditioning)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-sE0WEcTM3sx_SEz-kd9nabvn16zOKqz')"> <div class="unit-icon">🧪</div> <div class="unit-title">Unit 4 (Skinner’s Radical Behaviorism)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-tmSM9TW-NchmQEpzgxIH79N_bgugAtr')"> <div class="unit-icon">🤝</div> <div class="unit-title">Unit 5 (Guthrie’s Contiguous Conditioning)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-unxhAqnoKnqtvHn58tchzNKfnuimaSg')"> <div class="unit-icon">🧠</div> <div class="unit-title">Unit 6 (Hull’s Deductive Theory)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1-wSjugrEhmQZrA-TdAImIGSpbUY5beEc')"> <div class="unit-icon">🎯</div> <div class="unit-title">Unit 7 (Tolman’s Purposive Behaviorism)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/10I5dJ9J_MRRb7W4tVZRcHbx1q0jZyHbW')"> <div class="unit-icon">👀</div> <div class="unit-title">Unit 8 (Bandura’s Observational Learning)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🤔</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4105</div>
+                                <div class="course-title">Cognitive Psychology</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Samsad Afrin Himi and Md. Nore Nobi Nirobe</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/10_28Ry-bTOcUhTa3meZP4ZoJV_VNQ4t0')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/10bAcGuk0eMiSYibFD_t8H9_vLFGeeMrL')"> <div class="unit-icon">⚙️</div> <div class="unit-title">Unit 2 (Information Processing System)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/10eeRIteker65RSO3VhINLj32VtCdDFbS')"> <div class="unit-icon">💡</div> <div class="unit-title">Unit 3 (Conceptual Knowledge)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/10gH7r-fflP_br5_MWu3yxffQQrUQlI9f')"> <div class="unit-icon">🗣️</div> <div class="unit-title">Unit 4 (Language)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/10kA3YGvCQGEWtpkHn4ChNCWRHKArA0WC')"> <div class="unit-icon">🧩</div> <div class="unit-title">Unit 5 (Problem Solving)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/10k_WD6f3qorz-qi8nrPCpP4t78KYarFZ')"> <div class="unit-icon">⚖️</div> <div class="unit-title">Unit 6 (Reasoning and Decision Making)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/10oz6-ekTjrx8TbanvSlzFVgpMWfoC8A9')"> <div class="unit-icon">👶</div> <div class="unit-title">Unit 7 (Cognitive Development)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🚻</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4106</div>
+                                <div class="course-title">Gender Roles and Relations</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Sanjida Khan and Munira Azhar Urmee</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/110VoAPjHV_it2eYvcTRLiuraLKcPgHOb')"> <div class="unit-icon">👫</div> <div class="unit-title">Unit 1 (The Concept of Gender)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/112jDMtyXFo1fDbs2lG_l8vl9rxbQNVpF')"> <div class="unit-icon">🧠</div> <div class="unit-title">Unit 2 (Psychological Perspective of Gender Roles)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/116ZJF6kseKN_wdcg4Dh_PQW_0kb_aAXj')"> <div class="unit-icon">🌱</div> <div class="unit-title">Unit 3 (Development of Gender Identity)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11AlihKbQz9En6OSeXwTLVYcKyqrAo1sQ')"> <div class="unit-icon">❓</div> <div class="unit-title">Unit 4 (Issues Related with Gender Roles)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">📝</div>
+                            <div class="course-text">
+                                <div class="course-code">PSYL4107</div>
+                                <div class="course-title">Practical (Test)</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/11EEvOzVTPIb3FOWPNT5rGkmrVCsxAXPR')"> <div class="unit-icon">🔬</div> <div class="unit-title">Practical Materials</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-section">
+                        <div class="resource-title">Additional Resources</div>
+                        <div class="section-card red" onclick="openLink('https://drive.google.com/drive/folders/11EeiG1Za6WTMyApgX3Cq6vHrlJlFT-W3')"> <div class="section-icon-container">❓</div> <div class="section-title">Previous Questions</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card blue" onclick="openLink('https://drive.google.com/drive/folders/17RsMBQ_vP5_gpLy-7l33IeDzw2DJ8r6M')"> <div class="section-icon-container">📊</div> <div class="section-title">Question Analysis</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card yellow" onclick="openLink('https://drive.google.com/drive/folders/13RVDZqxWfZ1qXytu31rqyZOCM9PRI4Hs')"> <div class="section-icon-container">📚</div> <div class="section-title">Books</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card green" onclick="openLink('https://drive.google.com/file/d/1hMGuCdOrgEA9qo6gFgdnVXtZWTL64khc/view?usp=drivesdk')"> <div class="section-icon-container">📋</div> <div class="section-title">Syllabus</div> <div class="section-arrow">›</div> </div>
+                    </div>
+                </div>
+                 <div id="semester8" class="detail-view">
+                    <div class="back-button" onclick="showHome()">←</div>
+                    <div class="detail-header">Psychology 8th Semester</div>
+                    <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">👩‍🏫</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4201</div>
+                                <div class="course-title">Educational Psychology in Practice</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Professor Dr. Asoke Kumar Saha and Professor Dr. Muhammad Akram Uzaman</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1ccnahS-xEdklMwxUiGVkFgFrmcmj6W1P')"> <div class="unit-icon">🎯</div> <div class="unit-title">1. The influence of Motivation on Learning</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1zxzkTHhiinPqIidAABJYhkCsZ9pL27Vj')"> <div class="unit-icon">🧠</div> <div class="unit-title">2. Cognitive and Affective Factors in Learning</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1u8AI_f1Z0IkUXKKEXsdNpAZJmlNAUpHj')"> <div class="unit-icon">🏫</div> <div class="unit-title">3. School Discipline and Adjustment</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1rQgIQnELmrY3oO-i3rq5CpGHvf_vlrMD')"> <div class="unit-icon">📝</div> <div class="unit-title">4. Evaluation of Learning</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1aALXzDGXOKpEsMDdfY6OvcD_5VgiOrfr')"> <div class="unit-icon">🆘</div> <div class="unit-title">5. Learners Who Need Special Help</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1X84zL2PloIqjULEk50J3ZmcCUSrxSHaf')"> <div class="unit-icon">🛠️</div> <div class="unit-title">6. Psychological Services for Learner</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1mGjihVSIvvTDwYYNlqhFr45EHYI9e-7E')"> <div class="unit-icon">🧑‍🏫</div> <div class="unit-title">7. The Psychology of Being a teacher</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">💊</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4202</div>
+                                <div class="course-title">Assessment, Treatment and Prevention of Psychological Disorder</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Munira Azhar Urmee and Dr. Sanjida Khan</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/17wzgH_kJKVh6V6WWcG0kiUKRqFzbrtCS')"> <div class="unit-icon">📋</div> <div class="unit-title">Unit 1 (Clinical Assessment of Behavior Disorder)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/14tLtfZyfGXEIOa-OvtQQ5vTi7YtWbF4f')"> <div class="unit-icon">🧠</div> <div class="unit-title">Unit 2 (Biological Assessment)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1q2c_8CQhSlNOyQ6IEZmTB5aWBads8qtO')"> <div class="unit-icon">📝</div> <div class="unit-title">Unit 3 (Psychological Assessment)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1IjDR3zC0mnk36MWOvBI0DHjpyjwVQ44k')"> <div class="unit-icon">🧬</div> <div class="unit-title">Unit 4 (Biological Therapies)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1mn3KNMPCCK1tNzIweMG5T_n2gF9eEHXw')"> <div class="unit-icon">🗣️</div> <div class="unit-title">Unit 5 (Psychologically Based Therapies)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/123pBGNbJhUGDAt5l82nNidYhUxujRvg2')"> <div class="unit-icon">🛡️</div> <div class="unit-title">Unit 6 (Prevention of Behavior Disorder)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🏢</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4203</div>
+                                <div class="course-title">Organizational Behavior</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Noor Muhammad and Md. Shaheen Mollah</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1eMoYXe-JDZmo1y_Ugk02P0E62yV-H-gd')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1qrQJFT52c1Bs_fxHr4PeVIczbgfZRtlo')"> <div class="unit-icon">👨‍💼</div> <div class="unit-title">Unit 2 (Management Behavior)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1rtk0popv-H0GtoqVLZWgFAAgcfVNI6vA')"> <div class="unit-icon">🏗️</div> <div class="unit-title">Unit 3 (Models of Organizational Behavior)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Qap9Is-smcOnYwh3A7P5oELQXLB2Lbh9')"> <div class="unit-icon">🎯</div> <div class="unit-title">Unit 4 (Work Motivation and its Application)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Zi6quQuoDRbCPFwTA7kPlI_ZU7a9r6oH')"> <div class="unit-icon">👑</div> <div class="unit-title">Unit 5 (Basic Approaches to Leadership)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1i94A67YHNvNagYmtF7ObeCKdarmS9LfK')"> <div class="unit-icon">👤</div> <div class="unit-title">Unit 6 (Personality and Values)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1A81N5N8LzpuE-SCMSjqFbItClbvvSHqY')"> <div class="unit-icon">⚔️</div> <div class="unit-title">Unit 7 (Conflict and Negotiation)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1H1k5YxMUwQHS8R0mU53M0NUvB0qZ_R2m')"> <div class="unit-icon">🔄</div> <div class="unit-title">Unit 8 (Organizational Change and Development)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1V-GsdSBc6a7XZ4j-NwQyYsHcFkrLF66I')"> <div class="unit-icon">📚</div> <div class="unit-title">Book</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">🎭</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4204</div>
+                                <div class="course-title">Theories of Personality</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Shamima Akhter and Md. Rony Hossan</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/16t1jY7NY489SYVUSvY87OFjuFZ0KMqJh')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (Introduction)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1hforo0akcZlgb56FZow__uD4MFf3GYot')"> <div class="unit-icon">🧠</div> <div class="unit-title">Unit 2 (Sigmund Freud: Psychoanalytic theory)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1mhJ3T4ohBEtnzP2m80fR-ZGwJ1tgQaxT')"> <div class="unit-icon">👤</div> <div class="unit-title">Unit 3 (Alfred Adler: Neopsychoanalytic Approach)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1fTf_mYte3X8abyfqZ54aiXfKe0Hn5ybK')"> <div class="unit-icon">❤️</div> <div class="unit-title">Unit 4 (Carl R. Rogers: Phenomenological theory)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1859vDMZ5qIS-2Zz-WRxDndbZ8t2skkpT')"> <div class="unit-icon">🏷️</div> <div class="unit-title">Unit 5 (Gordon W. Allport: Trait theory)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1wtponpKUwa8rqm4C2ZGtZ8Bj9MVmvus9')"> <div class="unit-icon">🤝</div> <div class="unit-title">Unit 6 (Albert Bandura: Social-Learning Approach)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1S5z1clUgn4iriWkSg9SQ92EsXs5Uexb_')"> <div class="unit-icon">⏳</div> <div class="unit-title">Unit 7 (Erik Erikson: The Life Span Approach)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="course-card">
+                        <div class="course-header" onclick="toggleCourse(this)">
+                            <div class="course-icon-container">👁️</div>
+                            <div class="course-text">
+                                <div class="course-code">PSY4205</div>
+                                <div class="course-title">Theories of Perception</div>
+                            </div>
+                            <div class="expand-button">▼</div>
+                        </div>
+                        <div class="course-details">
+                            <div class="teacher-label">Course Teacher:</div>
+                            <div class="teacher-text">Dr. Kishor Roy and Hamida Akter</div>
+                            <div class="unit-list">
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/16vENgT5aUygSKBDlmV0Mse9GNhwdOoZI')"> <div class="unit-icon">📚</div> <div class="unit-title">Unit 1 (The Phenomena of Perception)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/16zgz1SI1aTG-YMx7OjPjc-RySQG6OKed')"> <div class="unit-icon">📜</div> <div class="unit-title">Unit 2 (The Classical Theories)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1Wzkok6PiDN9ZJyctyN6e4IdzoJb2RDLR')"> <div class="unit-icon">🧩</div> <div class="unit-title">Unit 3 (Gestalt Theory of Perception)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1sd4QvmFjUfBRag-ntjz4Wb49EOTGxmTa')"> <div class="unit-icon">⚖️</div> <div class="unit-title">Unit 4 (Adaptation Level Theory)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1IkPjH6n4thLgLVUuQsnnaDGI6Y42Fdcb')"> <div class="unit-icon">🔗</div> <div class="unit-title">Unit 5 (The Association Approach)</div> <div class="external-link">↗</div> </div>
+                                <div class="unit-item" onclick="openLink('https://drive.google.com/drive/folders/1ss8n6RpFFCZ3j1vu5iW5NNX3pW03_fey')"> <div class="unit-icon">🎯</div> <div class="unit-title">Unit 6 (The Directive State Theory)</div> <div class="external-link">↗</div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-section">
+                        <div class="resource-title">Additional Resources</div>
+                        <div class="section-card purple" onclick="openLink('https://drive.google.com/drive/folders/1E5gEYXzO-NIhtlfaMpriXFX5cx6I-qjj')"> <div class="section-icon-container">📝</div> <div class="section-title">Practical</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card red" onclick="openLink('https://drive.google.com/drive/folders/1HRXvfxvotiZT7bJJ5g_nPRioySRXRf5_')"> <div class="section-icon-container">❓</div> <div class="section-title">Previous Questions</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card blue" onclick="openLink('https://drive.google.com/drive/folders/1jS8VWdxAKdpQ84bhpe5x9gcCapSuS32i')"> <div class="section-icon-container">📊</div> <div class="section-title">Question Analysis</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card yellow" onclick="openLink('https://drive.google.com/drive/folders/1xAkGi_QptNAQ7XSEWWEY2TXAygfytXmh')"> <div class="section-icon-container">📚</div> <div class="section-title">Books</div> <div class="section-arrow">›</div> </div>
+                        <div class="section-card green" onclick="openLink('https://drive.google.com/drive/folders/1dHPTEvqtybdem5RH4PgU6pZi7wzYm4Hq')"> <div class="section-icon-container">📋</div> <div class="section-title">Syllabus</div> <div class="section-arrow">›</div> </div>
+                         <div class="section-card purple" onclick="openLink('https://drive.google.com/drive/folders/13qZX_nw0aBwbDdtjuylktaw8c92pd409')"> <div class="section-icon-container">📄</div> <div class="section-title">Final Sheet</div> <div class="section-arrow">›</div> </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Main Page Navigation ---
+        function showPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            const targetPage = document.getElementById('page' + pageNumber);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+            // REMOVED: No longer save page state to localStorage
+            // This ensures fresh app launch always starts from page 1
+        }
+
+        // --- Script for Page 1 ---
+        const starsContainer = document.getElementById('stars');
+        if (starsContainer) {
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 60 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // --- Script for Page 3 ---
+        const page3Content = document.getElementById('page3');
+        if (page3Content) {
+            const homeView = page3Content.querySelector('#homeView');
+            const detailViews = page3Content.querySelectorAll('.detail-view');
+
+            function showSemester(id) {
+                homeView.style.display = 'none';
+                const targetView = page3Gontent.querySelector('#semester' + id);
+                if(targetView) targetView.classList.add('active');
+                window.scrollTo(0, 0);
+                // REMOVED: No longer save semester state
+            }
+
+            function showHome() {
+                detailViews.forEach(view => {
+                    view.classList.remove('active');
+                });
+                homeView.style.display = 'block';
+                window.scrollTo(0, 0);
+                // REMOVED: No longer using localStorage
+            }
+
+            function toggleCourse(header) {
+                const details = header.nextElementSibling;
+                const button = header.querySelector('.expand-button');
+                if (!details || !details.classList.contains('course-details')) return;
+
+                const isShown = details.classList.contains('show');
+
+                const parentDetailView = header.closest('.detail-view');
+                if (parentDetailView) {
+                    parentDetailView.querySelectorAll('.course-details.show').forEach(openDetail => {
+                        if (openDetail !== details) {
+                            openDetail.classList.remove('show');
+                            const openHeader = openDetail.previousElementSibling;
+                            if (openHeader) {
+                                openHeader.querySelector('.expand-button').classList.remove('expanded');
+                            }
+                        }
+                    });
+                }
+                
+                if (isShown) {
+                    details.classList.remove('show');
+                    button.classList.remove('expanded');
+                } else {
+                    details.classList.add('show');
+                    button.classList.add('expanded');
+                    const unitList = details.querySelector('.unit-list');
+                    if(unitList) unitList.classList.add('show');
+                }
+            }
+
+            function openLink(url) {
+                // Enhanced link opening with proper handling
+                // Check if it's a Google Drive file or folder
+                if (url.includes('drive.google.com')) {
+                    // For direct file links, ensure proper viewing
+                    if (url.includes('/file/d/')) {
+                        // Extract file ID and create a proper preview URL
+                        const fileIdMatch = url.match(/\/file\/d\/([^\/\?]+)/);
+                        if (fileIdMatch && fileIdMatch[1]) {
+                            const fileId = fileIdMatch[1];
+                            // Use the preview URL which opens faster and shows PDF correctly
+                            const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+                            window.open(previewUrl, '_blank', 'noopener,noreferrer');
+                            return;
+                        }
+                    }
+                }
+                // For all other links, open normally
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }
+            
+            window.showSemester = showSemester;
+            window.showHome = showHome;
+            window.toggleCourse = toggleCourse;
+            window.openLink = openLink;
+        }
+
+        // --- State Restoration on Load ---
+        // FIXED: Clear localStorage on fresh app launch to always start from page 1
+        document.addEventListener('DOMContentLoaded', () => {
+            // Clear any saved state on fresh load to always start from page 1
+            localStorage.removeItem('currentPage');
+            localStorage.removeItem('currentSemester');
+
+            // Ensure page 1 is active on load
+            showPage(1);
+        });
+
+        // Disable pull-to-refresh on the entire document to prevent reload while scrolling
+        document.body.style.overscrollBehavior = 'none';
+        document.documentElement.style.overscrollBehavior = 'none';
+
+        // Add smooth and fast scrolling
+        document.documentElement.style.scrollBehavior = 'auto';
+
+    </script>
+</body>
+</html>
